@@ -1,1 +1,1 @@
-# cb-codebuildspec updat.e
+# cb-codebuildspec update
