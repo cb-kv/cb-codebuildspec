@@ -1,0 +1,21 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - apt-get update -y
+      - apt-get install -y ant
+  pre_build:
+    commands:
+      - ant -version
+      - export LC_ALL="en_US.UTF-8"
+      - locale-gen en_US en_US.UTF-8
+      - dpkg-reconfigure locales
+  build:
+    commands:
+      - echo "mail using ses"
+  post_build:
+    commands:
+      - buildtype="Docs"
+      - buildenv="dev"
+      - version=104
+      - aws ses send-email --from "codebuild@cb-infra.com" --to "kv@chargebee.com" --subject "Build triggered for $buildtype - $buildenv | Version:$version" --html "Build has been trigerred for <b>$buildtype $buildenv</b> environemt with <b>version $version</b>. Please verify and reach out to NOC(devops@chargebee.com) if the build version did not reflect your changes." --reply-to-addresses "devops@chargebee.com"
