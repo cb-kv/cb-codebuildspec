@@ -18,4 +18,4 @@ phases:
       - buildtype="Docs"
       - buildenv="dev"
       - version=104
-      - aws ses send-email --from "codebuild@cb-infra.com" --to "kv@chargebee.com" --subject "Build triggered for $buildtype - $buildenv | Version:$version" --html "Build has been trigerred for <b>$buildtype $buildenv</b> environemt with <b>version $version</b>. Please verify and reach out to NOC(devops@chargebee.com) if the build version did not reflect your changes." --reply-to-addresses "devops@chargebee.com"
+      - aws ses send-email --from "codebuild@cb-infra.com" --source-arn "arn:aws:ses:us-east-1:571790562270:identity/cb-infra.com"--to "kv@chargebee.com" --subject "Build triggered for $buildtype - $buildenv | Version:$version" --html "Build has been trigerred for <b>$buildtype $buildenv</b> environemt with <b>version $version</b>. Please verify and reach out to NOC(devops@chargebee.com) if the build version did not reflect your changes." --reply-to-addresses "devops@chargebee.com"
